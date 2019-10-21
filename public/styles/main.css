@@ -16,6 +16,11 @@ body {
     height: 35px;
 }
 
+#coatOfArms {
+    width: 74px;
+    height: 120px;
+}
+
 #menuDropdown, #loginBtn, .navbar-toggler {
     cursor: pointer;
 }
