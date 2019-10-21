@@ -2,11 +2,31 @@ body {
     background: #DDDDDD;
 }
 
-.navbar {
-    background-color: #800000;
-    color: white;
+#nav-link, #navbarMenuDrop, .navbar {
+    background-color: #016A3A;
+    color: white !important;
+    
 }
 
 .page-container {
     margin-top: 50px;
+}
+
+#greekLogo {
+    width: 96px;
+    height: 29px;
+}
+
+#menuDropdown, #loginBtn {
+    cursor: pointer;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none; 
+    background-color: none;
+}
+
+.nav-link:hover {
+    color: #f6b23b;
 }
