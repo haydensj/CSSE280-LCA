@@ -7,44 +7,100 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="styles/bootstrap.min.css">
   <link rel="stylesheet" href="styles/main.css">
-  <title>App Name</title>
+  <title>LCA-TKZ</title>
 </head>
 
 <body>
   <div class="row">
     <div class="col navbar navbar-dark sticky-top">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-        aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button id="menuToggleIcon" class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#mainMenuDrop">
+        <span class="material-icons">menu</span>
       </button>
     </div>
 
     <div class="col navbar navbar-dark sticky-top justify-content-center">
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="#">
         <img id="greekLogo" src="./resources/lcaGreekLogo.png">
       </a>
     </div>
 
     <div class="col navbar navbar-dark sticky-top justify-content-end">
-      <div id="loginBtn" class="navbar-toggler mr-sm-2">Log in</div>
+      <a id="loginBtn" class="navbar-toggler mr-sm-2" href="#"><span class="dropdownClickable">Log in</span></a>
     </div>
   </div>
 
   <div class="row">
-    <div id="navbarMenuDrop" class="col-3">
-      <div class="collapse navbar-collapse" id="navbarHeader">
+    <div class="navbarMenuDrop col-4">
+      <div class="collapse navbar-collapse" id="mainMenuDrop">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li>
-            <a class="nav-link" href="#">Members</a>
+            <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarMembers">
+              <span class="dropdownClickable">Members</span>
+            </div>
           </li>
           <li>
-            <a class="nav-link" href="#">Alumni</a>
+            <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarAlumni">
+              <span class="dropdownClickable">Alumni</span>
+            </div>
           </li>
           <li>
-            <a class="nav-link" href="#">How to Join</a>
+            <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarActiveTools">
+              <span class="dropdownClickable">Active Tools</span>
+            </div>
           </li>
           <li>
-            <a class="nav-link" href="#">Calendar</a>
+            <div class="navbar-toggler"><span class="dropdownClickable">Calendar</span></div>
+          </li>
+          <li>
+            <div class="navbar-toggler"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="navbarMenuDrop col-4">
+      <div class="collapse navbar-collapse" id="navbarMembers">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li>
+            <a class="nav-link" href="#">Actives List</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">Life in House</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">Duties</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarAlumni">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li>
+            <a class="nav-link" href="#">Alumni List</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">Alumni Life</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">Networking</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarActiveTools">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li>
+            <a class="nav-link" href="#">Theta Hour Logger</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">Theta Hour Signup</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">House Duty List</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">Minutes Maker</a>
           </li>
         </ul>
       </div>

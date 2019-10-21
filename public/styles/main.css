@@ -2,10 +2,9 @@ body {
     background: #DDDDDD;
 }
 
-#nav-link, #navbarMenuDrop, .navbar {
+#nav-link, .navbarMenuDrop, .navbar-toggler, .navbar {
     background-color: #016A3A;
     color: white !important;
-    
 }
 
 .page-container {
@@ -13,11 +12,11 @@ body {
 }
 
 #greekLogo {
-    width: 96px;
-    height: 29px;
+    width: 115px;
+    height: 35px;
 }
 
-#menuDropdown, #loginBtn {
+#menuDropdown, #loginBtn, .navbar-toggler {
     cursor: pointer;
 }
 
@@ -27,6 +26,15 @@ body {
     background-color: none;
 }
 
-.nav-link:hover {
+.dropdownClickable {
+    font-size: 12pt;
+}
+
+.nav-link:hover, .dropdownClickable:hover {
     color: #f6b23b;
+}
+
+#navbarMenuDrop:focus, #menuToggleIcon:focus, #loginBtn:focus{
+    border-color: #f6b23b;
+    outline: none;
 }
