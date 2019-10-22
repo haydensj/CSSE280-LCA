@@ -74,14 +74,15 @@ p {
     font-size: 12pt;
 }
 
-.nav-link:hover,
-.dropdownClickable:hover {
+.dropLink {
+    padding-left: 24px !important;
+}
+
+.nav-link:hover, .dropdownClickable:hover {
     color: #f6b23b;
 }
 
-#navbarMenuDrop:focus,
-#menuToggleIcon:focus,
-#loginBtn:focus {
+#navbarMenuDrop:focus, #menuToggleIcon:focus, #loginBtn:focus {
     border-color: #f6b23b;
     outline: none;
 }
