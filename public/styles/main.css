@@ -2,7 +2,10 @@ body {
     background: #DDDDDD;
 }
 
-#nav-link, .navbarMenuDrop, .navbar-toggler, .navbar {
+#nav-link,
+.navbarMenuDrop,
+.navbar-toggler,
+.navbar {
     background-color: #016A3A;
     color: white !important;
 }
@@ -21,17 +24,49 @@ body {
     height: 137px;
 }
 
+#crossCresent {
+    width: 100px;
+    height: 100px;
+}
+
+#lcaTitle {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 37px;
+    line-height: 33px;
+    display: flex;
+    align-items: flex-end;
+    color: #016A3A;
+}
+
+#roseTitle {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    font-weight: 750;
+    line-height: 19px;
+    display: flex;
+    align-items: flex-end;
+
+    color: #725220;
+
+}
+
 p {
     font-size: 10pt;
 }
 
-#menuDropdown, #loginBtn, .navbar-toggler {
+#menuDropdown,
+#loginBtn,
+.navbar-toggler {
     cursor: pointer;
 }
 
 .nav-link {
     color: white;
-    text-decoration: none; 
+    text-decoration: none;
     background-color: none;
 }
 
@@ -39,11 +74,14 @@ p {
     font-size: 12pt;
 }
 
-.nav-link:hover, .dropdownClickable:hover {
+.nav-link:hover,
+.dropdownClickable:hover {
     color: #f6b23b;
 }
 
-#navbarMenuDrop:focus, #menuToggleIcon:focus, #loginBtn:focus{
+#navbarMenuDrop:focus,
+#menuToggleIcon:focus,
+#loginBtn:focus {
     border-color: #f6b23b;
     outline: none;
 }

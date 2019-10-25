@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <title>LCA Login</title>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col navbar navbar-dark sticky-top">
+            <button id="menuToggleIcon" class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#mainMenuDrop">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+
+        <div class="col navbar navbar-dark sticky-top justify-content-center">
+            <a class="navbar-brand" href="#">
+                <img id="greekLogo" src="./resources/lcaGreekLogo.png">
+            </a>
+        </div>
+
+        <div class="col navbar navbar-dark sticky-top justify-content-end">
+            <a id="loginBtn" class="navbar-toggler mr-sm-2" href="#"><span class="dropdownClickable">Log in</span></a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="navbarMenuDrop col-4">
+            <div class="collapse navbar-collapse" id="mainMenuDrop">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li>
+                        <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarMembers">
+                            <span class="dropdownClickable">Members</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarAlumni">
+                            <span class="dropdownClickable">Alumni</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarActiveTools">
+                            <span class="dropdownClickable">Active Tools</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="navbar-toggler"><span class="dropdownClickable">Calendar</span></div>
+                    </li>
+                    <li>
+                        <div class="navbar-toggler"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navbarMenuDrop col-4">
+            <div class="collapse navbar-collapse" id="navbarMembers">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li>
+                        <a class="nav-link" href="#">Actives List</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Life in House</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Duties</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarAlumni">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li>
+                        <a class="nav-link" href="#">Alumni List</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Alumni Life</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Networking</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarActiveTools">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li>
+                        <a class="nav-link" href="#">Theta Hour Logger</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Theta Hour Signup</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">House Duty List</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Minutes Maker</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="row">
+            <div class="col-2">
+                <img src="https://www.lambdachi.org/wp-content/uploads/2018/02/Cross-and-Cresent-Gold-1.png"
+                    alt="Cross and Cresent" id="crossCresent">
+            </div>
+            <div class="col justify-content-start">
+                <br>
+                <span id="lcaTitle">LAMBDA CHI ALPHA</span>
+                <span id="roseTitle">Rose-Hulman Institute of Technology</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-page" class="page-container">
+        <div id="firebaseui-auth-container"></div>
+        <div id="emailPassword">
+            <div class="mdc-text-field email">
+                <input type="text" class="mdc-text-field__input" id="email-input" name="email">
+                <label class="mdc-floating-label" for="email-input">Email</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div class="mdc-text-field password">
+                <input type="password" class="mdc-text-field__input" id="password-input" name="password">
+                <label class="mdc-floating-label" for="password-input">Password</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+
+            <div class="button-container">
+                <button id="login" class="mdc-button mdc-button--raised">
+                    <span class="mdc-button__label">
+                        LOGIN
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/popper.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="/__/firebase/6.3.5/firebase-app.js"></script>
+    <script src="/__/firebase/6.3.5/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="scripts/login.js"></script>
+</body>
+
+</html>
