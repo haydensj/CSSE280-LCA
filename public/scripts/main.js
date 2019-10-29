@@ -71,6 +71,7 @@ rh.NavbarController = class {
 }
 
 rh.initialize = (callback) => {
+    $("#footer").load("partials/footer.html");
     $("#navbar").load("partials/navbar.html", () => {
         new rh.NavbarController(new rh.AuthManager());
         if (callback) {
