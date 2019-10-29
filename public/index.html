@@ -11,120 +11,29 @@
 </head>
 
 <body>
-  <div class="row">
-    <div class="col navbar navbar-dark sticky-top">
-      <button id="menuToggleIcon" class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#mainMenuDrop">
-        <span class="material-icons">menu</span>
-      </button>
-    </div>
-
-    <div class="col navbar navbar-dark sticky-top justify-content-center">
-      <a class="navbar-brand" href="#">
-        <img id="greekLogo" src="./resources/lcaGreekLogo.png">
-      </a>
-    </div>
-
-    <div class="col navbar navbar-dark sticky-top justify-content-end">
-      <a id="loginBtn" class="navbar-toggler mr-sm-2" href="#"><span class="dropdownClickable">Log in</span></a>
-    </div>
+  <div id="navbar">
   </div>
 
-  <div class="row">
-    <div class="navbarMenuDrop col-4">
-      <div class="collapse navbar-collapse" id="mainMenuDrop">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li>
-            <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarMembers">
-              <span class="dropdownClickable">Members</span>
-            </div>
-            <div class="navbarMenuDrop">
-              <div class="collapse navbar-collapse" id="navbarMembers">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                  <li>
-                    <a class="nav-link dropLink" href="#">Actives List</a>
-                  </li>
-                  <li>
-                    <a class="nav-link dropLink" href="#">Life in House</a>
-                  </li>
-                  <li>
-                    <a class="nav-link dropLink" href="#">Duties</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarAlumni">
-              <span class="dropdownClickable">Alumni</span>
-            </div>
-            <div class="navbarMenuDrop">
-              <div class="collapse navbar-collapse" id="navbarAlumni">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                  <li>
-                    <a class="nav-link dropLink" href="#">Alumni List</a>
-                  </li>
-                  <li>
-                    <a class="nav-link dropLink" href="#">Alumni Life</a>
-                  </li>
-                  <li>
-                    <a class="nav-link dropLink" href="#">Networking</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarActiveTools">
-              <span class="dropdownClickable">Active Tools</span>
-            </div>
-            <div class="navbarMenuDrop">
-              <div class="collapse navbar-collapse" id="navbarActiveTools">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                  <li>
-                    <a class="nav-link dropLink" href="#">Theta Hour Logger</a>
-                  </li>
-                  <li>
-                    <a class="nav-link dropLink" href="#">Theta Hour Signup</a>
-                  </li>
-                  <li>
-                    <a class="nav-link dropLink" href="#">House Duty List</a>
-                  </li>
-                  <li>
-                    <a class="nav-link dropLink" href="#">Minutes Maker</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="navbar-toggler"><span class="dropdownClickable">Calendar</span></div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div>
+  <div id="main-page" class="container page-container">
     <div class="row">
       <div class="col-2">
         <img src="https://www.lambdachi.org/wp-content/uploads/2018/02/Cross-and-Cresent-Gold-1.png"
           alt="Cross and Cresent" id="crossCresent">
       </div>
-      <div class="col justify-content-start">
+      <div class="col justify-content-end align-content-center">
         <br>
         <span id="lcaTitle">LAMBDA CHI ALPHA</span>
         <span id="roseTitle">Rose-Hulman Institute of Technology</span>
       </div>
     </div>
-  </div>
 
-  <div id="main-page" class="container page-container">
     <div class="card mb-3">
-      <img src="https://www.lambdachi.org/wp-content/uploads/2019/02/LCAMadeWebsite-1-300x195.png" class="card-img-top" alt="...">
+      <img src="https://www.lambdachi.org/wp-content/uploads/2019/02/LCAMadeWebsite-1-300x195.png" class="card-img-top"
+        alt="...">
       <div class="card-body">
         <h5 class="card-title">LCA Made a Website!</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </p>
         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       </div>
     </div>
@@ -158,13 +67,13 @@
     </div>
   </div>
 
-
   <script src="scripts/jquery.min.js"></script>
   <script src="scripts/popper.min.js"></script>
   <script src="scripts/bootstrap.min.js"></script>
   <script src="/__/firebase/6.3.5/firebase-app.js"></script>
   <script src="/__/firebase/6.3.5/firebase-firestore.js"></script>
   <script src="/__/firebase/init.js"></script>
+  <script src="scripts/navbar.js"></script>
   <script src="scripts/main.js"></script>
 </body>
 
