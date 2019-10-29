@@ -22,10 +22,7 @@ rh.enableTextFields = function () {
 	const ntkNum = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.ntkNum'));
 }
 
-/* Main */
 $(document).ready(() => {
 	console.log("Ready");
-	rh.initialize(() => {
-		rh.enableTextFields();
-	});
+	rh.initialize(rh.enableTextFields);
 });
