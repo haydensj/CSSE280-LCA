@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/profile.css">
+    <title>LCA Profile Editor</title>
+</head>
+
+<body>
+    <div id="navbar">
+    </div>
+
+    <div id="login-page" class="page-container">
+
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined fName leftCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline nfName">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">First Name</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined lName rightCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline nlName">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">Last Name</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="mdc-text-field text-field mdc-text-field--fullwidth mdc-text-field--no-label mdc-text-field--textarea rhEmail">
+                        <textarea id="text-field-fullwidth-textarea-helper" class="mdc-text-field__input"></textarea>
+                        <div class="mdc-notched-outline mdc-notched-outline--upgraded nrhEmail">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch" style=""><label class="mdc-floating-label"
+                                    for="text-field-fullwidth-textarea-helper" style="">Rose-Hulman Email</label></div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/popper.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="/__/firebase/6.3.5/firebase-app.js"></script>
+    <script src="/__/firebase/6.3.5/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="scripts/navbar.js"></script>
+    <script src="scripts/profile.js"></script>
+</body>
+
+</html>
