@@ -1,5 +1,7 @@
 var rh = rh || {};
 
+rh.REGISTRY_TOKEN = "172f5cec-b7d2-460f-932b-c14352138ddd";
+
 rh.AuthManager = class {
 	constructor() {
 		this._user = null;
