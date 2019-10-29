@@ -16,7 +16,25 @@
 <body>
     <div id="navbar">
     </div>
-    <div>PROFILE</div>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="row justify-content-between">
+                <div id="title" class="col">
+                    Profile Editor
+                </div>
+                <div class="col">
+                    <div class="row justify-content-between">
+                        <div class="col">
+                            <button>LOG OUT</button>
+                        </div>
+                        <div class="col">
+                            <button>SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="login-page" class="page-container">
 
         <div class="row justify-content-center">
@@ -76,6 +94,33 @@
                     </div>
                 </div>
 
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined curMajor leftCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline ncurMajor">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">Current Major(s)</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined gradYear rightCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline ngradYear">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">Graduation Year</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row justify-content-center">
                     <div
                         class="mdc-text-field text-field mdc-text-field--fullwidth mdc-text-field--no-label mdc-text-field--textarea rhEmail">
@@ -85,6 +130,114 @@
                             <div class="mdc-notched-outline__notch" style=""><label class="mdc-floating-label"
                                     for="text-field-fullwidth-textarea-helper" style="">Rose-Hulman Email</label></div>
                             <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div
+                        class="mdc-text-field text-field mdc-text-field--fullwidth mdc-text-field--no-label mdc-text-field--textarea nonRhEmail">
+                        <input class="mdc-text-field__input fullWidthLine"></textarea>
+                        <div class="mdc-notched-outline mdc-notched-outline--upgraded nnonRhEmail">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch" style=""><label class="mdc-floating-label"
+                                    for="text-field-fullwidth-textarea-helper" style="">Non Rose-Hulman Email</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div
+                        class="mdc-text-field text-field mdc-text-field--fullwidth mdc-text-field--no-label mdc-text-field--textarea hAddr">
+                        <input class="mdc-text-field__input fullWidthLine"></textarea>
+                        <div class="mdc-notched-outline mdc-notched-outline--upgraded nhAddr">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch" style=""><label class="mdc-floating-label"
+                                    for="text-field-fullwidth-textarea-helper" style="">Home Address</label></div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined state leftCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline nstate">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">State</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined city rightCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline ncity">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">City</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined zipCode leftCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline nzipCode">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">Zip Code</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined bDay rightCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline nbDay">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">Birthday</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined pNum leftCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline npNum">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">Phone Number</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined tSize rightCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline ntSize">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">T-Shirt Size</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
