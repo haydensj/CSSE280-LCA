@@ -21,5 +21,7 @@ rh.enableTextFields = function () {
 /* Main */
 $(document).ready(() => {
 	console.log("Ready");
-	rh.enableTextFields();
+	rh.initialize(() => {
+		rh.enableTextFields();
+	});
 });
