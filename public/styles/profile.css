@@ -1,0 +1,16 @@
+.row {
+    margin-bottom: 10px;
+}
+
+.leftCol {
+    margin-left: 5px;
+}
+
+.rightCol {
+    margin-right: 5px;
+}
+
+.mdc-text-field--fullwidth {
+    margin-left: 20px;
+    margin-right: 20px;
+}

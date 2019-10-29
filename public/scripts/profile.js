@@ -9,8 +9,13 @@
 var rh = rh || {};
 
 rh.enableTextFields = function () {
-	const textField = new mdc.textField.MDCTextField(document.querySelector('.mdc-text-field'));
-	const notchedOutline = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.mdc-notched-outline'));
+	const fName = new mdc.textField.MDCTextField(document.querySelector('.fName'));
+	const lName = new mdc.textField.MDCTextField(document.querySelector('.lName'));
+	const rhEmail = new mdc.textField.MDCTextField(document.querySelector('.rhEmail'));
+	
+	const nfName = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nfName'));
+	const nlName = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nlName'));
+	const nrhEmail = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nrhEmail'));
 }
 
 /* Main */
