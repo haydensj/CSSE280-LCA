@@ -1,4 +1,4 @@
 $(document).ready(() => {
-    console.log("Hi");
     $("#navbar").load("partials/navbar.html");
+    console.log("Navbar loaded");
 });
