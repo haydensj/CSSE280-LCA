@@ -16,11 +16,12 @@
 <body>
     <div id="navbar">
     </div>
-
+    <div>PROFILE</div>
     <div id="login-page" class="page-container">
 
         <div class="row justify-content-center">
             <div class="col-12">
+
                 <div class="row justify-content-between">
                     <div class="col">
                         <div class="mdc-text-field mdc-text-field--outlined fName leftCol">
@@ -48,9 +49,37 @@
                     </div>
                 </div>
 
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined curPos leftCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline ncurPos">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">Current Position</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mdc-text-field mdc-text-field--outlined tkNum rightCol">
+                            <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                            <div class="mdc-notched-outline ntkNum">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="tf-outlined" class="mdc-floating-label">TK Number</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row justify-content-center">
-                    <div class="mdc-text-field text-field mdc-text-field--fullwidth mdc-text-field--no-label mdc-text-field--textarea rhEmail">
-                        <textarea id="text-field-fullwidth-textarea-helper" class="mdc-text-field__input"></textarea>
+                    <div
+                        class="mdc-text-field text-field mdc-text-field--fullwidth mdc-text-field--no-label mdc-text-field--textarea rhEmail">
+                        <input class="mdc-text-field__input fullWidthLine"></textarea>
                         <div class="mdc-notched-outline mdc-notched-outline--upgraded nrhEmail">
                             <div class="mdc-notched-outline__leading"></div>
                             <div class="mdc-notched-outline__notch" style=""><label class="mdc-floating-label"
