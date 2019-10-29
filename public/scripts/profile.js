@@ -18,10 +18,7 @@ rh.enableTextFields = function () {
 	const nrhEmail = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nrhEmail'));
 }
 
-/* Main */
 $(document).ready(() => {
 	console.log("Ready");
-	rh.initialize(() => {
-		rh.enableTextFields();
-	});
+	rh.initialize(rh.enableTextFields);
 });
