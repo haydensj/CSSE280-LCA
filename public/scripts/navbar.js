@@ -1,4 +1,5 @@
-$(document).ready(() => {
-    $("#navbar").load("partials/navbar.html");
-    console.log("Navbar loaded");
-});
+var rh = rh || {};
+
+rh.initialize = (callback) => {
+    $("#navbar").load("partials/navbar.html", callback);
+};
