@@ -1,6 +1,171 @@
 var rh = rh || {};
 
+// Registry Token for Auth
 rh.REGISTRY_TOKEN = "172f5cec-b7d2-460f-932b-c14352138ddd";
+
+// static fields for the database
+rh.Fb = {};
+rh.Fb.COLLECTION_MEMBERS = "members";
+
+rh.Fb.UID = "uid";
+rh.Fb.TK_NUMBER = "TKNumber";
+rh.Fb.ALTERNATE_EMAIL = "alternateEmail";
+rh.Fb.BIRTHDAY = "birthday";
+rh.Fb.CITY = "city";
+rh.Fb.FULL_NAME = "fullName";
+rh.Fb.GRADUATION_YEAR = "graduationYear";
+rh.Fb.IS_ACTIVE = "isActive";
+rh.Fb.MAJOR = "major";
+rh.Fb.PHONE_NUMBER = "phoneNumber";
+rh.Fb.ROSE_EMAIL = "roseEmail";
+rh.Fb.STATE_ABBREVIATION = "stateAbbreviation";
+rh.Fb.STREET = "street";
+rh.Fb.T_SHIRT_SIZE = "tShirtSize";
+rh.Fb.USER_NAME = "userName";
+rh.Fb.ZIP = "zip";
+
+rh.Fb.Address = class {
+	constructor(street, city, stateAbbreviation, zip) {
+		this.street = street;
+		this.city = city;
+		this.stateAbbreviation = stateAbbreviation;
+		this.zip = zip;
+	}
+
+	duplicate() {
+		return new rh.Fb.Address(this.street, this.city, this.stateAbbreviation, this.zip);
+	}
+}
+
+rh.Fb.Member = class {
+	constructor(id, userName, TKNumber, phoneNumber, fullName, alternateEmail,
+		roseEmail, tShirtSize, address, major, graduationYear, birthday,
+		isActive) {
+		this.id = id;
+		this.userName = userName;
+		this.TKNumber = TKNumber;
+		this.phoneNumber = phoneNumber;
+		this.fullName = fullName;
+		this.alternateEmail = alternateEmail;
+		this.roseEmail = roseEmail;
+		this.tShirtSize = tShirtSize;
+		this.address = address;
+		this.major = major;
+		this.graduationYear = graduationYear;
+		this.birthday = birthday;
+		this.isActive = isActive;
+	}
+
+	duplicate() {
+		return new rh.Fb.Member(this.id, this.userName, this.TKNumber,
+			this.phoneNumber, this.fullName, this.alternateEmail,
+			this.roseEmail, this.tShirtSize, this.address.duplicate(),
+			this.major, this.graduationYear, this.birthday, this.isActive);
+	}
+}
+
+rh.Fb.MemberConstroller = class {
+	constructor(memberId) {
+		this._ref = firebase.firestore()
+			.collection(rh.Fb.COLLECTION_MEMBERS).doc(memberId);
+		this.member = null;
+		this._unsubscribe = null;
+	}
+
+	beginListening(changeListener) {
+		this._unsubscribe = this._ref.onSnapshot((doc) => {
+			if (doc.exists) {
+				this.member = this.createMember(doc);
+				if (changeListener) {
+					changeListener();
+				}
+			}
+		});
+	}
+
+	stopListening() {
+		this._unsubscribe();
+	}
+
+	update(member) {
+		this._ref.update({
+			[rh.Fb.TK_NUMBER]: member.TKNumber,
+			[rh.Fb.ALTERNATE_EMAIL]: member.alternateEmail,
+			[rh.Fb.BIRTHDAY]: member.birthday,
+			[rh.Fb.CITY]: member.address.city,
+			[rh.Fb.FULL_NAME]: member.fullName,
+			[rh.Fb.GRADUATION_YEAR]: member.graduationYear,
+			[rh.Fb.IS_ACTIVE]: member.isActive,
+			[rh.Fb.MAJOR]: member.major,
+			[rh.Fb.PHONE_NUMBER]: member.phoneNumber,
+			[rh.Fb.ROSE_EMAIL]: member.roseEmail,
+			[rh.Fb.STATE_ABBREVIATION]: member.address.stateAbbreviation,
+			[rh.Fb.STREET]: member.address.street,
+			[rh.Fb.T_SHIRT_SIZE]: member.tShirtSize,
+			[rh.Fb.USER_NAME]: member.userName,
+			[rh.Fb.ZIP]: member.address.zip
+		}).then((docRef) => {
+			console.log("Member updated");
+		})
+	}
+
+	createMember(document) {
+		const address = new rh.Fb.Address(
+			document.get(rh.Fb.STREET),
+			document.get(rh.Fb.CITY),
+			document.get(rh.Fb.STATE_ABBREVIATION),
+			document.get(rh.Fb.ZIP)
+		);
+
+		return new rh.Fb.Member(
+			document.get(rh.Fb.UID),
+			document.get(rh.Fb.USER_NAME),
+			document.get(rh.Fb.TK_NUMBER),
+			document.get(rh.Fb.PHONE_NUMBER),
+			document.get(rh.Fb.FULL_NAME),
+			document.get(rh.Fb.ALTERNATE_EMAIL),
+			document.get(rh.Fb.ROSE_EMAIL),
+			document.get(rh.Fb.T_SHIRT_SIZE),
+			address,
+			document.get(rh.Fb.MAJOR),
+			document.get(rh.Fb.GRADUATION_YEAR),
+			document.get(rh.Fb.BIRTHDAY),
+			document.get(rh.Fb.IS_ACTIVE)
+		)
+	}
+}
+
+rh.Fb.MembersController = class {
+	constructor() {
+		this._ref = firebase.firestore().collection(rh.Fb.COLLECTION_MEMBERS);
+		this._documentSnapshots = [];
+		this._unsubscribe = null;
+	}
+
+	beginListening(changeListener) {
+		// TODO
+		console.log("Beginning Listening: TODO");
+		this._unsubscribe = this._ref.orderBy(rh.Fb.USER_NAME, "desc").onSnapshot((querySnapshot) => {
+			this._documentSnapshots = querySnapshot.docs;
+			console.log("Updating member list");
+			if (changeListener) {
+				changeListener();
+			}
+		});
+	}
+
+	stopListening() {
+		this._unsubscribe();
+	}
+
+	getMember(memberId) {
+		// TODO
+	}
+
+	updateMember() {
+		// TODO
+	}
+}
 
 rh.AuthManager = class {
 	constructor() {
@@ -71,11 +236,11 @@ rh.NavbarController = class {
 }
 
 rh.initialize = (callback) => {
-    $("#footer").load("partials/footer.html");
-    $("#navbar").load("partials/navbar.html", () => {
-        new rh.NavbarController(new rh.AuthManager());
-        if (callback) {
-            callback();
-        }
-    });
+	$("#footer").load("partials/footer.html");
+	$("#navbar").load("partials/navbar.html", () => {
+		new rh.NavbarController(new rh.AuthManager());
+		if (callback) {
+			callback();
+		}
+	});
 };
