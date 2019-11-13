@@ -143,7 +143,6 @@ rh.Fb.MembersController = class {
 	}
 
 	beginListening(changeListener) {
-		// TODO
 		console.log("Beginning Listening: TODO");
 		this._unsubscribe = this._ref.orderBy(rh.Fb.USER_NAME, "desc").onSnapshot((querySnapshot) => {
 			this._documentSnapshots = querySnapshot.docs;
@@ -158,12 +157,40 @@ rh.Fb.MembersController = class {
 		this._unsubscribe();
 	}
 
-	getMember(memberId) {
-		// TODO
+	getMembers(isActive) {
+		let memberList = [];
+		this._documentSnapshots.forEach((document) => {
+			const member = createMember(document);
+			if (member.isActive == isActive) {
+				memberList.push(this.createMember(document));
+			}
+		});
+		return memberList;
 	}
 
-	updateMember() {
-		// TODO
+	createMember(document) {
+		const address = new rh.Fb.Address(
+			document.get(rh.Fb.STREET),
+			document.get(rh.Fb.CITY),
+			document.get(rh.Fb.STATE_ABBREVIATION),
+			document.get(rh.Fb.ZIP)
+		);
+
+		return new rh.Fb.Member(
+			document.get(rh.Fb.UID),
+			document.get(rh.Fb.USER_NAME),
+			document.get(rh.Fb.TK_NUMBER),
+			document.get(rh.Fb.PHONE_NUMBER),
+			document.get(rh.Fb.FULL_NAME),
+			document.get(rh.Fb.ALTERNATE_EMAIL),
+			document.get(rh.Fb.ROSE_EMAIL),
+			document.get(rh.Fb.T_SHIRT_SIZE),
+			address,
+			document.get(rh.Fb.MAJOR),
+			document.get(rh.Fb.GRADUATION_YEAR),
+			document.get(rh.Fb.BIRTHDAY),
+			document.get(rh.Fb.IS_ACTIVE)
+		)
 	}
 }
 
