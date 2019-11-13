@@ -79,7 +79,7 @@ rh.Fb.ThetaLog = class {
 	}
 }
 
-rh.Fb.MemberConstroller = class {
+rh.Fb.MemberController = class {
 	constructor(memberId) {
 		this._ref = firebase.firestore()
 			.collection(rh.Fb.COLLECTION_MEMBERS).doc(memberId);
@@ -174,7 +174,6 @@ rh.Fb.MembersController = class {
 	getMembers(isActive) {
 		let memberList = [];
 		this._documentSnapshots.forEach((document) => {
-			console.log(document);
 			const member = this._createMember(document);
 			if (member.isActive == isActive) {
 				memberList.push(member);
@@ -206,6 +205,16 @@ rh.Fb.MembersController = class {
 			document.get(rh.Fb.BIRTHDAY),
 			document.get(rh.Fb.IS_ACTIVE)
 		)
+	}
+
+	getMemberWithUsername(userName) {
+		for (let i = 0; i < this._documentSnapshots.length; i++) {
+			if (this._documentSnapshots[i].get(rh.Fb.USER_NAME) == userName) {
+				return this._createMember(this._documentSnapshots[i]);
+			}
+		}
+		console.log(this._documentSnapshots);
+		return {};
 	}
 }
 
@@ -258,6 +267,7 @@ rh.AuthManager = class {
 	}
 
 	get uid() {
+		console.log("YES", this._user.uid);
 		return this._user.uid;
 	}
 
@@ -323,25 +333,13 @@ rh.NavbarController = class {
 rh.initialize = (callback) => {
 	$("#footer").load("partials/footer.html");
 	$("#navbar").load("partials/navbar.html", () => {
-		new rh.NavbarController(new rh.AuthManager());
+		rh.authManager = new rh.AuthManager();
+		new rh.NavbarController(rh.authManager);
 		
-		const membersController = new rh.Fb.MembersController();
-		var memberController = null;
-		membersController.beginListening(() => {
-			const members = membersController.getMembers(true);
-			console.log(members);
-			memberController = new rh.Fb.MemberConstroller(members[0].id);
-			memberController.beginListening(() => {
-				console.log(memberController.member);
-			})
+		rh.authManager.beginListening(() => {
+			if (callback) {
+				callback();
+			}
 		});
-		// const thetaLogsController = new rh.Fb.ThetaLogsController();
-		// thetaLogsController.beginListening(() => {
-		// 	console.log(thetaLogsController.getLogs());
-		// });
-		
-		if (callback) {
-			callback();
-		}
 	});
 };

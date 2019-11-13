@@ -9,40 +9,57 @@
 var rh = rh || {};
 
 rh.enableTextFields = function () {
-	const fName = new mdc.textField.MDCTextField(document.querySelector('.fName'));
-	const lName = new mdc.textField.MDCTextField(document.querySelector('.lName'));
-	const rhEmail = new mdc.textField.MDCTextField(document.querySelector('.rhEmail'));
-	const curPos = new mdc.textField.MDCTextField(document.querySelector('.curPos'));
-	const tkNum = new mdc.textField.MDCTextField(document.querySelector('.tkNum'));
-	const curMajor = new mdc.textField.MDCTextField(document.querySelector('.curMajor'));
-	const gradYear = new mdc.textField.MDCTextField(document.querySelector('.gradYear'));
-	const nonRhEmail = new mdc.textField.MDCTextField(document.querySelector('.nonRhEmail'));
-	const hAddr = new mdc.textField.MDCTextField(document.querySelector('.hAddr'));
-	const state = new mdc.textField.MDCTextField(document.querySelector('.state'));
-	const city = new mdc.textField.MDCTextField(document.querySelector('.city'));
-	const zipCode = new mdc.textField.MDCTextField(document.querySelector('.zipCode'));
-	const bDay = new mdc.textField.MDCTextField(document.querySelector('.bDay'));
-	const pNum = new mdc.textField.MDCTextField(document.querySelector('.pNum'));
-	const tSize = new mdc.textField.MDCTextField(document.querySelector('.tSize'));
+	const selectorNames = [
+		"fName",
+		"lName",
+		"rhEmail",
+		"curPos",
+		"tkNum",
+		"curMajor",
+		"gradYear",
+		"nonRhEmail",
+		"hAddr",
+		"state",
+		"city",
+		"zipCode",
+		"bDay",
+		"pNum",
+		"tSize"
+	];
+	selectorNames.forEach((selectorName) => {
+		new mdc.textField.MDCTextField(document.querySelector("." + selectorName));
+		new mdc.notchedOutline.MDCNotchedOutline(document.querySelector("#n" + selectorName));
+	});
+}
 
-	const nfName = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nfName'));
-	const nlName = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nlName'));
-	const nrhEmail = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nrhEmail'));
-	const ncurPos = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.ncurPos'));
-	const ntkNum = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.ntkNum'));
-	const ncurMajor = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.ncurMajor'));
-	const ngradYear = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.ngradYear'));
-	const nnonRhEmail = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nnonRhEmail'));
-	const nhAddr = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nhAddr'));
-	const nstate = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nstate'));
-	const ncity = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.ncity'));
-	const nzipCode = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nzipCode'));
-	const nbDay = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.nbDay'));
-	const npNum = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.npNum'));
-	const ntSize = new mdc.notchedOutline.MDCNotchedOutline(document.querySelector('.ntSize'));
+rh.fillTextFields = (member) => {
+	console.log("Hello");
+	document.querySelector("#nfName").value = member.fullName;
+	document.querySelector("#nlName").value = member.fullName;
+	document.querySelector("#nrhEmail").value = member.roseEmail;
+	document.querySelector("#ncurPos").value = "";
+	document.querySelector("#ntkNum").value = member.TKNumber;
+	document.querySelector("#ncurMajor").value = member.major;
+	document.querySelector("#ngradYear").value = member.graduationYear;
+	document.querySelector("#nnonRhEmail").value = member.alternateEmail;
+	document.querySelector("#nhAddr").value = member.address.street;
+	document.querySelector("#nstate").value = member.address.stateAbbreviation;
+	document.querySelector("#ncity").value = member.address.city;
+	document.querySelector("#nzipCode").value = member.address.zip;
+	document.querySelector("#nbDay").value = member.birthday;
+	document.querySelector("#npNum").value = member.phoneNumber;
+	document.querySelector("#ntSize").value = member.tShirtSize;
 }
 
 $(document).ready(() => {
 	console.log("Ready");
-	rh.initialize(rh.enableTextFields);
+	rh.initialize(() => {
+		rh.enableTextFields();
+		const membersController = new rh.Fb.MembersController();
+		membersController.beginListening(() => {
+			const member = membersController.getMemberWithUsername(rh.authManager.uid);
+			console.log(member);
+			rh.fillTextFields(member);
+		});
+	});
 });
