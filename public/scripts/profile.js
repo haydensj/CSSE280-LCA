@@ -10,7 +10,6 @@ var rh = rh || {};
 
 rh.SELECTOR_NAMES = [
 	"fName",
-	"lName",
 	"rhEmail",
 	"curPos",
 	"tkNum",
