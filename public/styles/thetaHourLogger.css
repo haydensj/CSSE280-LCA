@@ -1,0 +1,32 @@
+.row {
+    margin-bottom: 10px;
+}
+
+.page-container{
+    margin-top: 10px;
+}
+
+.cardTitle, .cardSubtitle {
+    margin: 0px;
+}
+
+.cardList {
+    margin-bottom: 10px;
+}
+
+#fabContainer {
+    display: flex;
+    position: sticky;
+    justify-content: flex-end;
+    bottom: 0px;
+}
+
+#fab {
+    cursor: pointer;
+    left:0px;
+}
+
+#fab:active {
+    transform: translateY(4px);
+    opacity: 0.8;
+}

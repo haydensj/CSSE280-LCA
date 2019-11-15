@@ -49,9 +49,7 @@ body {
     line-height: 19px;
     display: flex;
     align-items: flex-end;
-
     color: #725220;
-
 }
 
 p {
@@ -85,4 +83,16 @@ p {
 #navbarMenuDrop:focus, #menuToggleIcon:focus, #loginBtn:focus {
     border-color: #f6b23b;
     outline: none;
+}
+
+.pageTitle {
+    margin-left: 5px;
+    font-size: 30pt;
+    text-decoration: underline overline;
+}
+
+.pageSubTitle {
+    margin-left: 5px;
+    font-size: 20pt;
+    text-decoration: underline overline;
 }
