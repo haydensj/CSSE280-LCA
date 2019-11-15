@@ -11,7 +11,7 @@ var rh = rh || {};
 rh.enableTextFields = function () {
 	const selectorNames = [
 		"fName",
-		"lName",
+		"tkNum",
 		"cHours",
 		"lHours"
 	];
