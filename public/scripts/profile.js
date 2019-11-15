@@ -87,7 +87,6 @@ $(document).ready(() => {
 	console.log("Ready");
 	rh.initialize(() => {
 		rh.enableTextFields();
-		console.log(rh.authManager.uid);
 		const memberController = new rh.Fb.MemberController(rh.authManager.uid);
 		memberController.beginListening(() => {
 			const member = memberController.member;
@@ -95,6 +94,11 @@ $(document).ready(() => {
 
 			$("#save").click(() => {
 				rh.saveMember(member, memberController);
+			});
+
+			$("#logout").click(() => {
+				rh.authManager.signOut();
+				window.location.href = "/";
 			});
 		});
 	});
