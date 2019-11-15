@@ -65,7 +65,6 @@ rh.fillTextFields = (member) => {
 
 rh.saveMember = (member, memberController) => {
 	member.fullName = $("#nfName").val();
-	member.fullName = $("#nlName").val();
 	member.roseEmail = $("#nrhEmail").val();
 	member.TKNumber = $("#ntkNum").val();
 	member.major = $("#ncurMajor").val();
