@@ -90,7 +90,8 @@ $(document).ready(() => {
 		console.log(rh.authManager.uid);
 		const memberController = new rh.Fb.MemberController(rh.authManager.uid);
 		memberController.beginListening(() => {
-			rh.fillTextFields(memberController.member);
+			const member = memberController.member;
+			rh.fillTextFields(member);
 
 			$("#save").click(() => {
 				rh.saveMember(member, memberController);
