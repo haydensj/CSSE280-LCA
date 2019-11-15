@@ -52,28 +52,49 @@ rh.fillTextFields = (member) => {
 	$("#ntSize").val(member.tShirtSize);
 
 	rh.SELECTOR_NAMES.forEach((name) => {
-
-		if ($(`#n${name}`).value != "") {
+		if ($(`#n${name}`).val() == "") {
+			$(`#n${name}`).val("");
+		} else {
 			$(`label[for=n${name}]`).addClass("mdc-floating-label--float-above");
 			$(`label[for=n${name}]`).addClass("mdc-notched-outline--notcheds");
 			$(`.${name} > .mdc-notched-outline--upgraded`).addClass("mdc-notched-outline--notched");
 			const width = $(`.${name} .mdc-notched-outline__notch`).width() * 0.78;
 			$(`.${name} .mdc-notched-outline__notch`).width(width);
-		} else {
-			$(`#n${name}`).value = "";
 		}
 	})
+}
+
+rh.saveMember = (member, memberController) => {
+	member.fullName = $("#nfName").val();
+	member.fullName = $("#nlName").val();
+	member.roseEmail = $("#nrhEmail").val();
+	member.TKNumber = $("#ntkNum").val();
+	member.major = $("#ncurMajor").val();
+	member.graduationYear = $("#ngradYear").val();
+	member.alternateEmail = $("#nnonRhEmail").val();
+	member.address.street = $("#nhAddr").val();
+	member.address.stateAbbreviation = $("#nstate").val();
+	member.address.city = $("#ncity").val();
+	member.address.zip = $("#nzipCode").val();
+	member.birthday = $("#nbDay").val();
+	member.phoneNumber = $("#npNum").val();
+	member.tShirtSize = $("#ntSize").val();
+
+	memberController.update(member);
 }
 
 $(document).ready(() => {
 	console.log("Ready");
 	rh.initialize(() => {
 		rh.enableTextFields();
-		const membersController = new rh.Fb.MembersController();
-		membersController.beginListening(() => {
-			const member = membersController.getMemberWithUsername(rh.authManager.uid);
-			console.log(member);
-			rh.fillTextFields(member);
+		console.log(rh.authManager.uid);
+		const memberController = new rh.Fb.MemberController(rh.authManager.uid);
+		memberController.beginListening(() => {
+			rh.fillTextFields(memberController.member);
+
+			$("#save").click(() => {
+				rh.saveMember(member, memberController);
+			});
 		});
 	});
 });

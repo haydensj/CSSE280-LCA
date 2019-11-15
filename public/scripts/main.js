@@ -83,14 +83,14 @@ rh.Fb.MemberController = class {
 	constructor(memberId) {
 		this._ref = firebase.firestore()
 			.collection(rh.Fb.COLLECTION_MEMBERS).doc(memberId);
-		this.member = null;
+		this._document = {};
 		this._unsubscribe = null;
 	}
 
 	beginListening(changeListener) {
 		this._unsubscribe = this._ref.onSnapshot((doc) => {
 			if (doc.exists) {
-				this.member = this._createMember(doc);
+				this._document = doc;
 				if (changeListener) {
 					changeListener();
 				}
@@ -147,6 +147,10 @@ rh.Fb.MemberController = class {
 			document.get(rh.Fb.BIRTHDAY),
 			document.get(rh.Fb.IS_ACTIVE)
 		)
+	}
+
+	get member() {
+		return this._createMember(this._document);
 	}
 }
 
@@ -243,7 +247,7 @@ rh.Fb.ThetaLogsController = class {
 		let logs = [];
 		this._documentSnapshots.forEach((document) => {
 			const log = this._createLog(document);
-			if(log.memberId == memberId) {
+			if (log.memberId == memberId) {
 				logs.push(this._createLog(document));
 			}
 		});
@@ -334,7 +338,7 @@ rh.initialize = (callback) => {
 	$("#navbar").load("partials/navbar.html", () => {
 		rh.authManager = new rh.AuthManager();
 		new rh.NavbarController(rh.authManager);
-		
+
 		rh.authManager.beginListening(() => {
 			if (callback) {
 				callback();
