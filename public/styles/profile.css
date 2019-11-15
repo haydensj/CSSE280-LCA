@@ -33,3 +33,13 @@
     max-height: 53px;
     min-height: 53px;
 }
+
+#logout {
+    margin-right: 55px;
+}
+
+@media (max-width: 475px) {
+    #logout {
+        margin-right: 0px;
+    }
+}
