@@ -267,7 +267,6 @@ rh.AuthManager = class {
 	}
 
 	get uid() {
-		console.log("YES", this._user.uid);
 		return this._user.uid;
 	}
 

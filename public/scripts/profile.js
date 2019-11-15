@@ -8,47 +8,61 @@
 /** namespace. */
 var rh = rh || {};
 
+rh.SELECTOR_NAMES = [
+	"fName",
+	"lName",
+	"rhEmail",
+	"curPos",
+	"tkNum",
+	"curMajor",
+	"gradYear",
+	"nonRhEmail",
+	"hAddr",
+	"state",
+	"city",
+	"zipCode",
+	"bDay",
+	"pNum",
+	"tSize"
+];
+
 rh.enableTextFields = function () {
-	const selectorNames = [
-		"fName",
-		"lName",
-		"rhEmail",
-		"curPos",
-		"tkNum",
-		"curMajor",
-		"gradYear",
-		"nonRhEmail",
-		"hAddr",
-		"state",
-		"city",
-		"zipCode",
-		"bDay",
-		"pNum",
-		"tSize"
-	];
-	selectorNames.forEach((selectorName) => {
-		new mdc.textField.MDCTextField(document.querySelector("." + selectorName));
-		new mdc.notchedOutline.MDCNotchedOutline(document.querySelector("#n" + selectorName));
+	rh.SELECTOR_NAMES.forEach((selectorName) => {
+		new mdc.textField.MDCTextField($("." + selectorName)[0]);
+		// new mdc.textField.MDCTextField($("label[for=n" + selectorName + "]")[0]);
+		new mdc.notchedOutline.MDCNotchedOutline($("#n" + selectorName)[0]);
 	});
 }
 
 rh.fillTextFields = (member) => {
-	console.log("Hello");
-	document.querySelector("#nfName").value = member.fullName;
-	document.querySelector("#nlName").value = member.fullName;
-	document.querySelector("#nrhEmail").value = member.roseEmail;
-	document.querySelector("#ncurPos").value = "";
-	document.querySelector("#ntkNum").value = member.TKNumber;
-	document.querySelector("#ncurMajor").value = member.major;
-	document.querySelector("#ngradYear").value = member.graduationYear;
-	document.querySelector("#nnonRhEmail").value = member.alternateEmail;
-	document.querySelector("#nhAddr").value = member.address.street;
-	document.querySelector("#nstate").value = member.address.stateAbbreviation;
-	document.querySelector("#ncity").value = member.address.city;
-	document.querySelector("#nzipCode").value = member.address.zip;
-	document.querySelector("#nbDay").value = member.birthday;
-	document.querySelector("#npNum").value = member.phoneNumber;
-	document.querySelector("#ntSize").value = member.tShirtSize;
+	$("#nfName").val(member.fullName);
+	$("#nlName").val(member.fullName);
+	$("#nrhEmail").val(member.roseEmail);
+	$("#ncurPos").val("");
+	$("#ntkNum").val(member.TKNumber);
+	$("#ncurMajor").val(member.major);
+	$("#ngradYear").val(member.graduationYear);
+	$("#nnonRhEmail").val(member.alternateEmail);
+	$("#nhAddr").val(member.address.street);
+	$("#nstate").val(member.address.stateAbbreviation);
+	$("#ncity").val(member.address.city);
+	$("#nzipCode").val(member.address.zip);
+	$("#nbDay").val(member.birthday);
+	$("#npNum").val(member.phoneNumber);
+	$("#ntSize").val(member.tShirtSize);
+
+	rh.SELECTOR_NAMES.forEach((name) => {
+
+		if ($(`#n${name}`).value != "") {
+			$(`label[for=n${name}]`).addClass("mdc-floating-label--float-above");
+			$(`label[for=n${name}]`).addClass("mdc-notched-outline--notcheds");
+			$(`.${name} > .mdc-notched-outline--upgraded`).addClass("mdc-notched-outline--notched");
+			const width = $(`.${name} .mdc-notched-outline__notch`).width() * 0.78;
+			$(`.${name} .mdc-notched-outline__notch`).width(width);
+		} else {
+			$(`#n${name}`).value = "";
+		}
+	})
 }
 
 $(document).ready(() => {
