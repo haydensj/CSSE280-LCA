@@ -25,10 +25,11 @@ rh.SELECTOR_NAMES = [
 	"tSize"
 ];
 
+rh.BUTTON_SCALE = 0.78;
+
 rh.enableTextFields = function () {
 	rh.SELECTOR_NAMES.forEach((selectorName) => {
 		new mdc.textField.MDCTextField($("." + selectorName)[0]);
-		// new mdc.textField.MDCTextField($("label[for=n" + selectorName + "]")[0]);
 		new mdc.notchedOutline.MDCNotchedOutline($("#n" + selectorName)[0]);
 	});
 }
@@ -57,7 +58,7 @@ rh.fillTextFields = (member) => {
 			$(`label[for=n${name}]`).addClass("mdc-floating-label--float-above");
 			$(`label[for=n${name}]`).addClass("mdc-notched-outline--notcheds");
 			$(`.${name} > .mdc-notched-outline--upgraded`).addClass("mdc-notched-outline--notched");
-			const width = $(`.${name} .mdc-notched-outline__notch`).width() * 0.78;
+			const width = $(`.${name} .mdc-notched-outline__notch`).width() * rh.BUTTON_SCALE;
 			$(`.${name} .mdc-notched-outline__notch`).width(width);
 		}
 	})
@@ -91,6 +92,7 @@ $(document).ready(() => {
 			rh.fillTextFields(member);
 
 			$("#save").click(() => {
+				rh.BUTTON_SCALE = 1;
 				rh.saveMember(member, memberController);
 			});
 
