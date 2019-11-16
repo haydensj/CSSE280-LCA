@@ -28,6 +28,15 @@ rh.Fb.EVENT_ID = "eventId";
 rh.Fb.IS_VALID = "isValid";
 rh.Fb.MEMBER_ID = "memberId";
 rh.Fb.TIME = "time";
+rh.Fb.HOURS = "hours";
+
+rh.Fb.COLLECTION_THETA_EVENTS = "thetaEvents";
+rh.Fb.NAME = "name";
+rh.Fb.DATE = "date";
+rh.Fb.DESCRIPTION = "description";
+rh.Fb.START_TIME = "startTime";
+rh.Fb.END_TIME = "endTime";
+rh.Fb.IS_WEEKLY = "isWeekly";
 
 rh.Fb.Address = class {
 	constructor(street, city, stateAbbreviation, zip) {
@@ -70,12 +79,25 @@ rh.Fb.Member = class {
 }
 
 rh.Fb.ThetaLog = class {
-	constructor(id, eventId, isValid, memberId, time) {
+	constructor(id, eventId, isValid, memberId, time, hours) {
 		this.id = id;
 		this.eventId = eventId;
 		this.isValid = isValid;
 		this.memberId = memberId;
 		this.time = time;
+		this.hours = hours;
+	}
+}
+
+rh.Fb.ThetaEvent = class {
+	constructor(id, date, name, description, startTime, endTime, isWeekly) {
+		this.id = id;
+		this.date = date;
+		this.name = name;
+		this.description = description;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.isWeekly = isWeekly;
 	}
 }
 
@@ -256,11 +278,50 @@ rh.Fb.ThetaLogsController = class {
 
 	_createLog(document) {
 		return new rh.Fb.ThetaLog(
-			document.get(rh.Fb.UID),
+			document.id,
 			document.get(rh.Fb.EVENT_ID),
 			document.get(rh.Fb.IS_VALID),
 			document.get(rh.Fb.MEMBER_ID),
-			document.get(rh.Fb.TIME)
+			document.get(rh.Fb.TIME),
+			document.get(rh.Fb.HOURS)
+		);
+	}
+}
+
+rh.Fb.ThetaEventController = class {
+	constructor() {
+		this._ref = firebase.firestore().collection(rh.Fb.COLLECTION_THETA_EVENTS);
+		this._documentSnapshots = [];
+		this._unsubscribe = null;
+	}
+
+	beginListening(changeListener) {
+		this._unsubscribe = this._ref.onSnapshot((querySnapshot) => {
+			this._documentSnapshots = querySnapshot.docs;
+			console.log("Updating Theta Events");
+			if (changeListener) {
+				changeListener();
+			}
+		});
+	}
+
+	getEvents() {
+		let events = [];
+		this._documentSnapshots.forEach((snapshot) => {
+			events.push(this._createEvent(snapshot));
+		});
+		return events;
+	}
+
+	_createEvent(document) {
+		return new rh.Fb.ThetaEvent(
+			document.id,
+			document.get(rh.Fb.DATE),
+			document.get(rh.Fb.NAME),
+			document.get(rh.Fb.DESCRIPTION),
+			document.get(rh.Fb.START_TIME),
+			document.get(rh.Fb.END_TIME),
+			document.get(rh.Fb.IS_WEEKLY)
 		);
 	}
 }
