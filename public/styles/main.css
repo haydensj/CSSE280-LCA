@@ -1,6 +1,59 @@
+/* For all pages */
 body {
     background: #DDDDDD;
     overflow-x: hidden;
+}
+
+p {
+    font-size: 10pt;
+}
+
+.page-container {
+    padding-top: 70px;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.pageTitle {
+    margin-left: 5px;
+    font-size: 30pt;
+    text-decoration: underline overline;
+}
+
+.pageSubTitle {
+    margin-left: 5px;
+    font-size: 20pt;
+    text-decoration: underline overline;
+}
+
+.cardTitle, .cardSubtitle {
+    margin: 0px;
+}
+
+.cardList {
+    margin-bottom: 10px;
+}
+
+.mdc-tab-bar {
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.btn-outline-light {
+    color: #016A3A;
+}
+
+.btn-light {
+    background-color: #016A3A;
+    color: white;
+}
+
+.btn-light:hover {
+    background-color: #016A3A;
+    color: white;
+    opacity: 0.8;
 }
 
 #nav-link,
@@ -11,10 +64,55 @@ body {
     color: white !important;
 }
 
-.page-container {
-    margin-top: 50px;
+.navbar-nav {
+    margin-top: 0px;
 }
 
+#navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    margin-bottom: 100px;
+}
+
+#calendarMenu {
+    margin-bottom: 10px;
+}
+
+#menuDropdown,
+#loginBtn,
+.navbar-toggler {
+    cursor: pointer;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    background-color: none;
+}
+
+.dropdownClickable {
+    font-size: 12pt;
+}
+
+.dropLink {
+    padding-left: 24px !important;
+}
+
+.nav-link:hover,
+.dropdownClickable:hover {
+    color: #f6b23b;
+}
+
+#navbarMenuDrop:focus,
+#menuToggleIcon:focus,
+#loginBtn:focus {
+    border-color: #f6b23b;
+    outline: none;
+}
+
+/* For index.html */
 #greekLogo {
     width: 115px;
     height: 35px;
@@ -53,69 +151,65 @@ body {
     color: #725220;
 }
 
-#calendarMenu {
-    margin-bottom: 10px;
+/* For profile.html */
+
+.mdc-text-field {
+    height: 53px;
+    max-height: 53px;
+    min-height: 53px;
 }
 
-p {
-    font-size: 10pt;
+.mdc-text-field--fullwidth {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 53px;
+    max-height: 53px;
+    min-height: 53px;
 }
 
-.btn-outline-light {
-    color: #016A3A;
+.fullWidthLine {
+    height: 53px;
+    max-height: 53px;
+    min-height: 53px;
 }
 
-.btn-light {
-    background-color: #016A3A;
-    color: white;
+#logout {
+    margin-right: 55px;
 }
 
-.btn-light:hover {
-    background-color: #016A3A;
-    color: white;
+.leftCol {
+    margin-left: 5px;
+}
+
+.rightCol {
+    margin-right: 5px;
+}
+
+@media (max-width: 475px) {
+    #logout {
+        margin-right: 0px;
+    }
+}
+
+/* For thetaHourLogger.html */
+#fabContainer {
+    display: flex;
+    position: sticky;
+    justify-content: flex-end;
+    bottom: 0px;
+}
+
+#fab {
+    cursor: pointer;
+    left:0px;
+}
+
+#fab:active {
+    transform: translateY(4px);
     opacity: 0.8;
 }
 
-#menuDropdown,
-#loginBtn,
-.navbar-toggler {
-    cursor: pointer;
-}
-
-.nav-link {
-    color: white;
-    text-decoration: none;
-    background-color: none;
-}
-
-.dropdownClickable {
-    font-size: 12pt;
-}
-
-.dropLink {
-    padding-left: 24px !important;
-}
-
-.nav-link:hover,
-.dropdownClickable:hover {
-    color: #f6b23b;
-}
-
-#navbarMenuDrop:focus,
-#menuToggleIcon:focus,
-#loginBtn:focus {
-    border-color: #f6b23b;
-    outline: none;
-}
-
-.pageTitle {
-    margin-left: 5px;
-    font-size: 30pt;
-    text-decoration: underline overline;
-}
-
-.pageSubTitle {
-    margin-left: 5px;
-    font-size: 20pt;
-    text-decoration: underline overline;
+/* For thetaHourSignup.html */
+#curDate {
+    margin-right: 5px;
 }
