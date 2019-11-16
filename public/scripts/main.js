@@ -90,13 +90,14 @@ rh.Fb.ThetaLog = class {
 }
 
 rh.Fb.ThetaEvent = class {
-	constructor(id, date, name, description, startTime, endTime, isWeekly) {
+	constructor(id, date, name, description, startTime, endTime, hours, isWeekly) {
 		this.id = id;
 		this.date = date;
 		this.name = name;
 		this.description = description;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.hours = hours;
 		this.isWeekly = isWeekly;
 	}
 }
@@ -321,6 +322,7 @@ rh.Fb.ThetaEventController = class {
 			document.get(rh.Fb.DESCRIPTION),
 			document.get(rh.Fb.START_TIME),
 			document.get(rh.Fb.END_TIME),
+			document.get(rh.Fb.HOURS),
 			document.get(rh.Fb.IS_WEEKLY)
 		);
 	}
@@ -341,7 +343,6 @@ rh.AuthManager = class {
 
 	beginListening(changeListener) {
 		firebase.auth().onAuthStateChanged((user) => {
-			console.log("Auth State changed to", user);
 			this._user = user;
 			changeListener();
 		});
