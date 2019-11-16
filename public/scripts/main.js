@@ -37,6 +37,7 @@ rh.Fb.DESCRIPTION = "description";
 rh.Fb.START_TIME = "startTime";
 rh.Fb.END_TIME = "endTime";
 rh.Fb.IS_WEEKLY = "isWeekly";
+rh.Fb.VOLUNTEERS = "volunteers";
 
 rh.Fb.Address = class {
 	constructor(street, city, stateAbbreviation, zip) {
@@ -90,7 +91,7 @@ rh.Fb.ThetaLog = class {
 }
 
 rh.Fb.ThetaEvent = class {
-	constructor(id, date, name, description, startTime, endTime, hours, isWeekly) {
+	constructor(id, date, name, description, startTime, endTime, hours, isWeekly, volunteers) {
 		this.id = id;
 		this.date = date;
 		this.name = name;
@@ -99,6 +100,7 @@ rh.Fb.ThetaEvent = class {
 		this.endTime = endTime;
 		this.hours = hours;
 		this.isWeekly = isWeekly;
+		this.volunteers = volunteers;
 	}
 }
 
@@ -323,8 +325,29 @@ rh.Fb.ThetaEventController = class {
 			document.get(rh.Fb.START_TIME),
 			document.get(rh.Fb.END_TIME),
 			document.get(rh.Fb.HOURS),
-			document.get(rh.Fb.IS_WEEKLY)
+			document.get(rh.Fb.IS_WEEKLY),
+			document.get(rh.Fb.VOLUNTEERS)
 		);
+	}
+
+	signUp(eventId, memberId) {
+		const docRef = this._ref.doc(eventId);
+		docRef.get().then((event) => {
+			console.log(event);
+			if (event.get(rh.Fb.VOLUNTEERS) != null) {
+				const volunteers = event.get(rh.Fb.VOLUNTEERS);
+				if (volunteers.length < 2 && !volunteers.includes(memberId)) {
+					volunteers.push(memberId);
+					docRef.update({
+						[rh.Fb.VOLUNTEERS]: volunteers
+					});
+				}
+			} else {
+				docRef.update({
+					[rh.Fb.VOLUNTEERS]: [memberId]
+				});
+			}
+		})
 	}
 }
 
