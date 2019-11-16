@@ -18,6 +18,14 @@ rh.enableTabs = function () {
 rh.PageController = class {
 	constructor(eventController) {
 		this._eventController = eventController;
+		this._day = rh.DAYS[0];
+		rh.DAYS.forEach((day) => {
+			const button = $(`#${day}Button`);
+			button.click(() => {
+				this._day = day;
+				this.updateView();
+			})
+		})
 		eventController.beginListening(() => {
 			this.updateView();
 		});
@@ -79,12 +87,15 @@ rh.PageController = class {
 			const oldList = $(`#${day}`);
 			oldList.hide();
 			oldList.removeAttr("id");
-			oldList.after($(`<div id="${day}" class="row justify-content-center"></div>`));
+			const newList = $(`<div id="${day}" class="row justify-content-center"></div>`);
+			if (this._day != day) {
+				newList.hide();
+			}
+			oldList.after(newList);
 		})
 
 		let i = 0;
 		events.forEach((event) => {
-			console.log(event);
 			const date = (typeof event.date == 'string' || event.date instanceof String) ?
 				event.date : 
 				rh.DAYS[event.date.toDate().getDay()];
@@ -103,6 +114,5 @@ $(document).ready(() => {
 		const eventController = new rh.Fb.ThetaEventController();
 		new rh.PageController(eventController);
 		rh.enableTabs();
-		// rh.enableTextFields();
 	});
 });
