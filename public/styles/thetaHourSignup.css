@@ -6,6 +6,10 @@
     margin-bottom: 10px;
 }
 
+.mdc-tab-bar {
+    background-color: white;
+}
+
 .page-container{
     margin-top: 10px;
 }

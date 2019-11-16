@@ -1,5 +1,6 @@
 body {
     background: #DDDDDD;
+    overflow-x: hidden;
 }
 
 #nav-link,
@@ -95,11 +96,14 @@ p {
     padding-left: 24px !important;
 }
 
-.nav-link:hover, .dropdownClickable:hover {
+.nav-link:hover,
+.dropdownClickable:hover {
     color: #f6b23b;
 }
 
-#navbarMenuDrop:focus, #menuToggleIcon:focus, #loginBtn:focus {
+#navbarMenuDrop:focus,
+#menuToggleIcon:focus,
+#loginBtn:focus {
     border-color: #f6b23b;
     outline: none;
 }
