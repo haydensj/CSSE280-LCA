@@ -1,0 +1,19 @@
+#curDate {
+    margin-right: 5px;
+}
+
+.row, .mdc-tab-bar{
+    margin-bottom: 10px;
+}
+
+.page-container{
+    margin-top: 10px;
+}
+
+.cardTitle, .cardSubtitle {
+    margin: 0px;
+}
+
+.cardList {
+    margin-bottom: 10px;
+}

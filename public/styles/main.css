@@ -64,6 +64,17 @@ p {
     color: #016A3A;
 }
 
+.btn-light {
+    background-color: #016A3A;
+    color: white;
+}
+
+.btn-light:hover {
+    background-color: #016A3A;
+    color: white;
+    opacity: 0.8;
+}
+
 #menuDropdown,
 #loginBtn,
 .navbar-toggler {
