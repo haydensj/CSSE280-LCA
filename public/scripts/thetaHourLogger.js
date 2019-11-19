@@ -1,3 +1,11 @@
+/**
+ * @fileoverview
+ * Provides interactions for all pages in the UI.
+ *
+ * @author  Connor Mattox, Sterling Hayden
+ */
+
+/** namespace. */
 var rh = rh || {};
 
 rh.enableTextFields = () => {
@@ -13,41 +21,55 @@ rh.enableTextFields = () => {
 	});
 }
 
+rh.addLog = (logsController, memberId, title, description, date, startTime, endTime, hours) => {
+	if (typeof date == 'string' || date instanceof String) {
+		date = new Date(date);
+	}
+	logsController.createNewLog(memberId, title, description, date, startTime, endTime, hours);
+}
+
 rh.PageController = class {
-	constructor(logsController, eventController) {
+	constructor(logsController) {
+		$("#submitEvent").click(() => {
+			rh.addLog(
+				logsController,
+				rh.authManager.uid,
+				$("#inputTitle").val(),
+				$("#inputDesc").val(),
+				$("#inputDate").val(),
+				$("#inputStart").val(),
+				$("#inputEnd").val(),
+				$("#inputHours").val()
+			);
+		});
 		this._logsController = logsController;
-		this._eventController = eventController;
 		let isInitialized = false;
 		let listener = () => {
 			if (isInitialized) {
-				this.updateView()
+				this.updateView();
 			} else {
 				isInitialized = true;
 			}
 		}
-		this._logsController.beginListening(listener);
-		this._eventController.beginListening(listener);
+		this._logsController.beginListening(this.updateView.bind(this));
 	}
 
 	updateView() {
-		const events = this._eventController.getEvents();
 		const logs = this._logsController.getLogs(rh.authManager.uid);
+
+		const newList = $('<div id="logs" class="row justify-content-center"></div>');
+
+		logs.forEach((log) => {
+			console.log(log);
+			const date = log.date.toDate();
+			const time = (date.getMonth() + 1) + "/" + date.getDate() + "/" + (date.getYear() + 1900);
+			const card = this.createCard(log.event.name, time, log.event.startTime + " - " + log.event.endTime, log.event.description, log.hours);
+			newList.append(card);
+		});
 
 		const oldList = $("#logs");
 		oldList.hide();
 		oldList.removeAttr("id");
-		const newList = $('<div id="logs" class="row justify-content-center"></div>');
-
-		logs.forEach((log) => {
-			events.forEach((event) => {
-				if (log.eventId == event.id) {
-					const date = log.time.toDate();
-					const time = (date.getMonth() + 1) + "/" + date.getDate() + "/" + (date.getYear() + 1900);
-					const card = this.createCard(event.name, time, event.startTime + " - " + event.endTime, event.description, 	log.hours);
-					newList.append(card);
-				}
-			});
-		});
 
 		oldList.after(newList);
 	}
@@ -88,8 +110,8 @@ $(document).ready(() => {
 	console.log("Ready");
 	rh.initialize(() => {
 		rh.enableTextFields();
-		const logsController = new rh.Fb.ThetaLogsController();
 		const eventController = new rh.Fb.ThetaEventController();
-		new rh.PageController(logsController, eventController);
+		const logsController = new rh.Fb.ThetaLogsController(eventController);
+		new rh.PageController(logsController);
 	});
 });

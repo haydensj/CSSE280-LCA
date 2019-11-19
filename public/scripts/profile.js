@@ -2,7 +2,7 @@
  * @fileoverview
  * Provides interactions for all pages in the UI.
  *
- * @author  Connor Mattox
+ * @author  Connor Mattox, Sterling Hayden
  */
 
 /** namespace. */

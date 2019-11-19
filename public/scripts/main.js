@@ -1,3 +1,11 @@
+/**
+ * @fileoverview
+ * Provides interactions for all pages in the UI.
+ *
+ * @author  Connor Mattox, Sterling Hayden
+ */
+
+/** namespace. */
 var rh = rh || {};
 
 // Registry Token for Auth
@@ -27,7 +35,6 @@ rh.Fb.COLLECTION_THETA_LOGS = "thetaEventLogs";
 rh.Fb.EVENT_ID = "eventId";
 rh.Fb.IS_VALID = "isValid";
 rh.Fb.MEMBER_ID = "memberId";
-rh.Fb.TIME = "time";
 rh.Fb.HOURS = "hours";
 
 rh.Fb.COLLECTION_THETA_EVENTS = "thetaEvents";
@@ -80,12 +87,12 @@ rh.Fb.Member = class {
 }
 
 rh.Fb.ThetaLog = class {
-	constructor(id, eventId, isValid, memberId, time, hours) {
+	constructor(id, event, isValid, memberId, date, hours) {
 		this.id = id;
-		this.eventId = eventId;
+		this.event = event;
 		this.isValid = isValid;
 		this.memberId = memberId;
-		this.time = time;
+		this.date = date;
 		this.hours = hours;
 	}
 }
@@ -248,10 +255,11 @@ rh.Fb.MembersController = class {
 }
 
 rh.Fb.ThetaLogsController = class {
-	constructor() {
+	constructor(thetaEventController) {
 		this._ref = firebase.firestore().collection(rh.Fb.COLLECTION_THETA_LOGS);
 		this._documentSnapshots = [];
 		this._unsubscribe = null;
+		this._thetaEventController = thetaEventController;
 	}
 
 	beginListening(changeListener) {
@@ -279,15 +287,51 @@ rh.Fb.ThetaLogsController = class {
 		return logs;
 	}
 
+	createNewLog(memberId, title, description, date, startTime, endTime, hours) {
+		this._ref.add({
+			[rh.Fb.MEMBER_ID]: memberId,
+			[rh.Fb.NAME]: title,
+			[rh.Fb.DESCRIPTION]: description,
+			[rh.Fb.IS_VALID]: true,
+			[rh.Fb.HOURS]: hours,
+			[rh.Fb.DATE]: date,
+			[rh.Fb.START_TIME]: startTime,
+			[rh.Fb.END_TIME]: endTime
+		});
+	}
+
 	_createLog(document) {
-		return new rh.Fb.ThetaLog(
-			document.id,
-			document.get(rh.Fb.EVENT_ID),
-			document.get(rh.Fb.IS_VALID),
-			document.get(rh.Fb.MEMBER_ID),
-			document.get(rh.Fb.TIME),
-			document.get(rh.Fb.HOURS)
-		);
+		if (document.get(rh.Fb.EVENT_ID) != undefined) {
+			const event = this._thetaEventController.getEventWithId(rh.Fb.EVENT_ID);
+			return new rh.Fb.ThetaLog(
+				document.id,
+				event,
+				document.get(rh.Fb.IS_VALID),
+				document.get(rh.Fb.MEMBER_ID),
+				document.get(rh.Fb.DATE),
+				document.get(rh.Fb.HOURS)
+			);
+		} else {
+			const event = new rh.Fb.ThetaEvent(
+				"",
+				document.get(rh.Fb.DATE),
+				document.get(rh.Fb.NAME),
+				document.get(rh.Fb.DESCRIPTION),
+				document.get(rh.Fb.START_TIME),
+				document.get(rh.Fb.END_TIME),
+				document.get(rh.Fb.HOURS),
+				"",
+				""
+			);
+			return new rh.Fb.ThetaLog(
+				document.id,
+				event,
+				document.get(rh.Fb.IS_VALID),
+				document.get(rh.Fb.MEMBER_ID),
+				document.get(rh.Fb.DATE),
+				document.get(rh.Fb.HOURS)
+			);
+		}
 	}
 }
 
@@ -314,6 +358,16 @@ rh.Fb.ThetaEventController = class {
 			events.push(this._createEvent(snapshot));
 		});
 		return events;
+	}
+
+	getEventWithId(eventId) {
+		let doc = {};
+		this._documentSnapshots.forEach((snapshot) => {
+			if (snapshot.id == eventId) {
+				doc = this._createEvent(snapshot);
+			}
+		});
+		return doc;
 	}
 
 	_createEvent(document) {
