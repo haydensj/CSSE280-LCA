@@ -97,12 +97,11 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div id="logs" class="justify-content-center"></div>
-
-    <div id="fabContainer">
-        <img id="fab" src="resources/fab.png" alt="fab" data-toggle="modal" data-target="#addThetaEventDialog">
+        <div id="logs" class="justify-content-center"></div>
+        <div id="fabContainer">
+            <img id="fab" src="resources/fab.png" alt="fab" data-toggle="modal" data-target="#addThetaEventDialog">
+        </div>
+        <div id="footer"></div>
     </div>
 
     <!-- Modal -->
@@ -131,19 +130,19 @@
                     <div class="form-group row">
                         <label for="inputDate" class="col-sm-3 mt-sm-2 control-label">Date:</label>
                         <div class="col-sm-9">
-                            <input type="text" id="inputDate" class="form-control" placeholder="Ex. 11/15/2019">
+                            <input type="date" id="inputDate" class="form-control" value="2000-01-01">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputStart" class="col-sm-3 mt-sm-2 control-label">Start Time:</label>
                         <div class="col-sm-9">
-                            <input type="text" id="inputStart" class="form-control" placeholder="Ex. 6:00pm">
+                            <input type="time" id="inputStart" class="form-control" value="09:00">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputEnd" class="col-sm-3 mt-sm-2 control-label">End Time:</label>
                         <div class="col-sm-9">
-                            <input type="text" id="inputEnd" class="form-control" placeholder="Ex. 9:00pm">
+                            <input type="time" id="inputEnd" class="form-control" value="12:00">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -162,8 +161,6 @@
             </div>
         </div>
     </div>
-
-    <div id="footer"></div>
 
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/popper.min.js"></script>
