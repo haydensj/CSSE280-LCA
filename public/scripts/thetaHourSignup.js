@@ -31,7 +31,7 @@ rh.PageController = class {
 		});
 	}
 
-	createCard(id, id1, id2, name, date, description, startTime, endTime, hours, vol1, vol2) {
+	createCard(id, id1, id2, name, date, description, startTime, endTime, hours, vol1, vol2, signedUp) {
 		const card = $(
 			`<div class="col mdc-card">
 				<h2 class="row cardTitle mdc-typography mdc-typography--headline5">
@@ -64,7 +64,7 @@ rh.PageController = class {
 						</div>
 					</div>
 					<div class="col my-auto">
-						<button class="signUp btn btn-light">SIGN UP</button>
+						<button class="${signedUp ? "signOut" : "signUp"} btn btn-light">${signedUp ? "CANCEL" : "SIGN UP"}</button>
 					</div>
 				</h3>
 			</div>`
@@ -80,6 +80,10 @@ rh.PageController = class {
 		card.find(".signUp").click(() => {
 			this._eventController.signUp(id, rh.authManager.uid);
 		});
+
+		card.find(".signOut").click(() => {
+			this._eventController.removeSignUp(id, rh.authManager.uid);
+		})
 
 		return card;
 	}
@@ -100,6 +104,7 @@ rh.PageController = class {
 
 		let i = 0;
 		events.forEach((event) => {
+			console.log(event.volunteers.includes(rh.authManager.uid));
 			const date = (typeof event.date == 'string' || event.date instanceof String) ?
 				event.date : 
 				rh.DAYS[event.date.toDate().getDay()];
@@ -107,7 +112,7 @@ rh.PageController = class {
 			const vol2 = (event.volunteers.length > 1) ? event.volunteers[1] : "";
 			
 			const card = this.createCard(event.id, `vol${i}`, `vol${i + 1}`, event.name, date,
-				event.description, event.startTime, event.endTime, event.hours, vol1, vol2);
+				event.description, event.startTime, event.endTime, event.hours, vol1, vol2, event.volunteers.includes(rh.authManager.uid));
 			$(`#${date}`).append(card);
 			
 			i += 2;

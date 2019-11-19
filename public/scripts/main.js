@@ -387,7 +387,6 @@ rh.Fb.ThetaEventController = class {
 	signUp(eventId, memberId) {
 		const docRef = this._ref.doc(eventId);
 		docRef.get().then((event) => {
-			console.log(event);
 			if (event.get(rh.Fb.VOLUNTEERS) != null) {
 				const volunteers = event.get(rh.Fb.VOLUNTEERS);
 				if (volunteers.length < 2 && !volunteers.includes(memberId)) {
@@ -401,7 +400,20 @@ rh.Fb.ThetaEventController = class {
 					[rh.Fb.VOLUNTEERS]: [memberId]
 				});
 			}
-		})
+		});
+	}
+
+	removeSignUp(eventId, memberId) {
+		const docRef = this._ref.doc(eventId);
+		docRef.get().then((event) => {
+			const volunteers = event.get(rh.Fb.VOLUNTEERS);
+			if (volunteers.includes(memberId)) {
+				volunteers.splice(volunteers.indexOf(memberId), 1);
+				docRef.update({
+					[rh.Fb.VOLUNTEERS]: volunteers
+				});
+			}
+		});
 	}
 }
 

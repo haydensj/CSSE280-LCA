@@ -30,13 +30,16 @@ rh.addLog = (logsController, memberId, title, description, date, startTime, endT
 
 rh.PageController = class {
 	constructor(logsController) {
+		const today = new Date();
+		$("#inputDate").val(`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`);
+
 		$("#submitEvent").click(() => {
 			rh.addLog(
 				logsController,
 				rh.authManager.uid,
 				$("#inputTitle").val(),
 				$("#inputDesc").val(),
-				$("#inputDate").val(),
+				new Date($("#inputDate").val()),
 				$("#inputStart").val(),
 				$("#inputEnd").val(),
 				$("#inputHours").val()
@@ -44,13 +47,6 @@ rh.PageController = class {
 		});
 		this._logsController = logsController;
 		let isInitialized = false;
-		let listener = () => {
-			if (isInitialized) {
-				this.updateView();
-			} else {
-				isInitialized = true;
-			}
-		}
 		this._logsController.beginListening(this.updateView.bind(this));
 	}
 
