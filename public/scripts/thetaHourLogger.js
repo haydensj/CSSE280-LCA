@@ -8,6 +8,9 @@
 /** namespace. */
 var rh = rh || {};
 
+rh.HOURS_NEEDED = 4;
+rh.BUTTON_SCALE = 0.78;
+
 rh.enableTextFields = () => {
 	const selectorNames = [
 		"fName",
@@ -29,7 +32,7 @@ rh.addLog = (logsController, memberId, title, description, date, startTime, endT
 }
 
 rh.PageController = class {
-	constructor(logsController) {
+	constructor(logsController, memberController) {
 		const today = new Date();
 		$("#inputDate").val(`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`);
 
@@ -45,9 +48,18 @@ rh.PageController = class {
 				$("#inputHours").val()
 			);
 		});
+		this._memberController = memberController;
 		this._logsController = logsController;
-		let isInitialized = false;
-		this._logsController.beginListening(this.updateView.bind(this));
+		let initialized = false;
+		let listener = () => {
+			if (initialized) {
+				this.updateView();
+			} else {
+				initialized = true;
+			}
+		}
+		this._logsController.beginListening(listener);
+		this._memberController.beginListening(listener);
 	}
 
 	updateView() {
@@ -55,7 +67,10 @@ rh.PageController = class {
 
 		const newList = $('<div id="logs" class="row justify-content-center"></div>');
 
+		let completed = 0;
 		logs.forEach((log) => {
+			completed += log.hours;
+
 			console.log(log);
 			const date = log.date.toDate();
 			const time = (date.getMonth() + 1) + "/" + date.getDate() + "/" + (date.getYear() + 1900);
@@ -68,6 +83,21 @@ rh.PageController = class {
 		oldList.removeAttr("id");
 
 		oldList.after(newList);
+
+		$("#ncHours").val(completed);
+		$("#nlHours").val(Math.max(0, rh.HOURS_NEEDED - completed));
+		$("#nfName").val(this._memberController.member.fullName);
+		$("#ntkNum").val(this._memberController.member.TKNumber);
+
+		["fName", "tkNum", "cHours", "lHours"].forEach((name) => {
+			$(`label[for=n${name}]`).addClass("mdc-floating-label--float-above");
+			$(`label[for=n${name}]`).addClass("mdc-notched-outline--notcheds");
+			$(`.${name} > .mdc-notched-outline--upgraded`).addClass("mdc-notched-outline--notched");
+			const width = $(`.${name} .mdc-notched-outline__notch`).width() * rh.BUTTON_SCALE;
+			$(`.${name} .mdc-notched-outline__notch`).width(width);
+		});
+
+		rh.BUTTON_SCALE = 1;
 	}
 
 	createCard(name, date, time, description, hours) {
@@ -108,6 +138,7 @@ $(document).ready(() => {
 		rh.enableTextFields();
 		const eventController = new rh.Fb.ThetaEventController();
 		const logsController = new rh.Fb.ThetaLogsController(eventController);
-		new rh.PageController(logsController);
+		const memberController = new rh.Fb.MemberController(rh.authManager.uid);
+		new rh.PageController(logsController, memberController);
 	});
 });

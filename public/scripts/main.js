@@ -293,7 +293,7 @@ rh.Fb.ThetaLogsController = class {
 			[rh.Fb.NAME]: title,
 			[rh.Fb.DESCRIPTION]: description,
 			[rh.Fb.IS_VALID]: true,
-			[rh.Fb.HOURS]: hours,
+			[rh.Fb.HOURS]: parseInt(hours),
 			[rh.Fb.DATE]: date,
 			[rh.Fb.START_TIME]: startTime,
 			[rh.Fb.END_TIME]: endTime
@@ -309,7 +309,7 @@ rh.Fb.ThetaLogsController = class {
 				document.get(rh.Fb.IS_VALID),
 				document.get(rh.Fb.MEMBER_ID),
 				document.get(rh.Fb.DATE),
-				document.get(rh.Fb.HOURS)
+				parseInt(document.get(rh.Fb.HOURS))
 			);
 		} else {
 			const event = new rh.Fb.ThetaEvent(
@@ -319,7 +319,7 @@ rh.Fb.ThetaLogsController = class {
 				document.get(rh.Fb.DESCRIPTION),
 				document.get(rh.Fb.START_TIME),
 				document.get(rh.Fb.END_TIME),
-				document.get(rh.Fb.HOURS),
+				parseInt(document.get(rh.Fb.HOURS)),
 				"",
 				""
 			);
@@ -329,7 +329,7 @@ rh.Fb.ThetaLogsController = class {
 				document.get(rh.Fb.IS_VALID),
 				document.get(rh.Fb.MEMBER_ID),
 				document.get(rh.Fb.DATE),
-				document.get(rh.Fb.HOURS)
+				parseInt(document.get(rh.Fb.HOURS))
 			);
 		}
 	}
