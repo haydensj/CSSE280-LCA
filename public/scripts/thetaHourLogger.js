@@ -37,12 +37,14 @@ rh.PageController = class {
 		$("#inputDate").val(`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`);
 
 		$("#submitEvent").click(() => {
+			const date = new Date($("#inputDate").val());
+			date.setTime(date.getTime() + 86400000);
 			rh.addLog(
 				logsController,
 				rh.authManager.uid,
 				$("#inputTitle").val(),
 				$("#inputDesc").val(),
-				new Date($("#inputDate").val()),
+				date,
 				$("#inputStart").val(),
 				$("#inputEnd").val(),
 				$("#inputHours").val()
