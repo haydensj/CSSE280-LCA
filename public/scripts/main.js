@@ -494,9 +494,20 @@ rh.initialize = (callback) => {
 		new rh.NavbarController(rh.authManager);
 
 		rh.authManager.beginListening(() => {
-			if (window.location.pathname != "/" && rh.authManager.uid == null) {
-				window.location.href = "/";
+			if (rh.authManager.uid != null) {
+				const memberController = new rh.Fb.MemberController(rh.authManager.uid);
+				memberController._ref.get().then((doc) => {
+					if (!doc.exists) {
+						rh.authManager.signOut();
+						window.location.href = "/";
+					}
+				});
+			} else {
+				if (window.location.pathname != "/") {
+					window.location.pathname = "/";
+				}
 			}
+
 			if (callback) {
 				callback();
 			}
