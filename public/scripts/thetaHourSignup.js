@@ -8,7 +8,7 @@
 /** namespace. */
 var rh = rh || {};
 
-rh.DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+rh.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 rh.enableTabs = function () {
 	new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
@@ -104,7 +104,6 @@ rh.PageController = class {
 
 		let i = 0;
 		events.forEach((event) => {
-			console.log(event.volunteers.includes(rh.authManager.uid));
 			const date = (typeof event.date == 'string' || event.date instanceof String) ?
 				event.date : 
 				rh.DAYS[event.date.toDate().getDay()];

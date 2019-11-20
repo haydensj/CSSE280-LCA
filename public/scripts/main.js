@@ -423,6 +423,9 @@ rh.AuthManager = class {
 	}
 
 	get uid() {
+		if (this._user == null) {
+			return null;
+		}
 		return this._user.uid;
 	}
 
@@ -491,6 +494,9 @@ rh.initialize = (callback) => {
 		new rh.NavbarController(rh.authManager);
 
 		rh.authManager.beginListening(() => {
+			if (window.location.pathname != "/" && rh.authManager.uid == null) {
+				window.location.href = "/";
+			}
 			if (callback) {
 				callback();
 			}
