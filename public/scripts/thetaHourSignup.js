@@ -33,7 +33,7 @@ rh.PageController = class {
 
 	createCard(id, id1, id2, name, date, description, startTime, endTime, hours, vol1, vol2, signedUp) {
 		const card = $(
-			`<div class="col mdc-card">
+			`<div class="col-12 mdc-card spaced">
 				<h2 class="row cardTitle mdc-typography mdc-typography--headline5">
 					<div class="col-7 col-xl-6">${name}</div>
 					<div class="col-5">${date}</div>

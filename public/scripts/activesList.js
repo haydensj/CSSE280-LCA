@@ -37,8 +37,8 @@ rh.CreateCard = (fullName, major, graduationYear, tkNumber) => {
 				</div>
 			</div>
 			<div class="col-0 col-lg-4 col-md-3 col-sm-2 col-xs-0"></div>
-			</div>`
-		);
+		</div>`
+	);
 }
 
 rh.AddMember = (member) => {

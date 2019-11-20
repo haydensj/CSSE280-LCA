@@ -47,6 +47,10 @@ p {
     margin-bottom: 10px;
 }
 
+.spaced {
+    margin-bottom: 10px;
+}
+
 .btn-outline-light {
     color: #016A3A;
 }
